@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+const PLAYER_X = 'X';
+const PLAYER_O = 'O';
+
 function Square(props){
     return (
         <button className="square" onClick={()=>props.onClick()}>
@@ -20,7 +23,7 @@ class Board extends React.Component {
     }
     handleClick=(i)=>{
         const squares = this.state.squares.slice();
-        squares[i] = this.state.xIsNext ? 'X' : 'O';
+        squares[i] = this.state.xIsNext ?  PLAYER_X : PLAYER_O;
         this.setState({
             squares: squares,
             xIsNext: !this.state.xIsNext
@@ -32,7 +35,7 @@ class Board extends React.Component {
     }
 
     render() {
-        const status = 'Next player: X';
+        let status = `Next Player: ${this.state.xIsNext? PLAYER_X : PLAYER_O}`;
 
         return (
             <div>
